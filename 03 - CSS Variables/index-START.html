@@ -66,20 +66,17 @@
     const base = document.querySelector('input[name="base"]')
     const spacing = document.querySelector('input[name="spacing"]')
     const blur = document.querySelector('input[name="blur"]')
-    const img = document.querySelector('img')
-    const hl = document.querySelector('.hl')
 
     base.addEventListener('change', () => {
-      img.style.setProperty('--base', base.value)
-      hl.style.setProperty('--base', base.value)
+      document.documentElement.style.setProperty('--base', base.value)
     })
 
     spacing.addEventListener('change', () => {
-      img.style.setProperty('--spacing', `${spacing.value}px`)
+      document.documentElement.style.setProperty('--spacing', `${spacing.value}px`)
     })
 
     blur.addEventListener('change', () => {
-      img.style.setProperty('--blur', `${blur.value}px`)
+      document.documentElement.style.setProperty('--blur', `${blur.value}px`)
     })
   </script>
 
