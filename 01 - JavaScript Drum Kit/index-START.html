@@ -59,6 +59,20 @@
 
 <script>
 
+  const keys = Array.from(document.querySelectorAll('.key'))
+  const sounds = Array.from(document.querySelectorAll('audio'))
+
+  document.addEventListener('keydown', event => {
+
+      // taking advantage of coercion since sound.dataset.key is a String but event.keyCode is a Number
+      const sound = sounds.find( sound => sound.dataset.key == event.keyCode)
+      if (sound.paused) sound.play()
+      else sound.currentTime = 0
+      const key = keys.find(key => key.dataset.key == event.keyCode)
+      key.classList.toggle('playing')
+      setTimeout( () => key.classList.toggle('playing'), 50)
+
+  })
 </script>
 
 
