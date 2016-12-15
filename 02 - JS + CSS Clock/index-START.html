@@ -61,12 +61,32 @@
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: right;
     }
 
   </style>
-
   <script>
+    const hour = document.querySelector('.hour-hand')
+    const min = document.querySelector('.min-hand')
+    const second = document.querySelector('.second-hand')
 
+    const degreeOffset = 90
+    const hoursToDegreeCoeff = 30
+    const minsAndSecsToDegreeCoeff = 6
+    const degreesPerHour = 30
+    const degreesPerMinute = 6
+
+    setInterval(() => {
+      const now = new Date()
+      const currentHours = now.getHours()
+      const currentMins = now.getMinutes()
+      const currentSeconds = now.getSeconds()
+      // hour hand rotation also depends on rotation of the minute hand
+      // and minute hand rotation also depends on rotation of the second hand
+      hour.style.transform = `rotate(${hoursToDegreeCoeff * currentHours + degreeOffset + degreesPerHour * currentMins / 60}deg)`
+      min.style.transform = `rotate(${minsAndSecsToDegreeCoeff * currentMins + degreeOffset + degreesPerMinute * currentSeconds / 60}deg)`
+      second.style.transform = `rotate(${minsAndSecsToDegreeCoeff * currentSeconds + degreeOffset}deg)`
+    }, 1000)
 
   </script>
 </body>
