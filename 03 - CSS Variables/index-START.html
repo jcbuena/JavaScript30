@@ -21,6 +21,17 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    html {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    img {
+      background-color: var(--base);
+      padding: var(--spacing);
+      filter: blur(var(--blur))
+    }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -48,6 +59,22 @@
   </style>
 
   <script>
+    const base = document.querySelector('input[name="base"]')
+    const spacing = document.querySelector('input[name="spacing"]')
+    const blur = document.querySelector('input[name="blur"]')
+    const img = document.querySelector('img')
+
+    base.addEventListener('change', () => {
+      img.style.setProperty('--base', base.value)
+    })
+
+    spacing.addEventListener('change', () => {
+      img.style.setProperty('--spacing', `${spacing.value}px`)
+    })
+
+    blur.addEventListener('change', () => {
+      img.style.setProperty('--blur', `${blur.value}px`)
+    })
   </script>
 
 </body>
