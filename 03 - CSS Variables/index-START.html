@@ -33,6 +33,10 @@
       filter: blur(var(--blur))
     }
 
+    .hl {
+      color: var(--base);
+    }
+
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -63,9 +67,11 @@
     const spacing = document.querySelector('input[name="spacing"]')
     const blur = document.querySelector('input[name="blur"]')
     const img = document.querySelector('img')
+    const hl = document.querySelector('.hl')
 
     base.addEventListener('change', () => {
       img.style.setProperty('--base', base.value)
+      hl.style.setProperty('--base', base.value)
     })
 
     spacing.addEventListener('change', () => {
