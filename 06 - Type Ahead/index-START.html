@@ -23,18 +23,18 @@ const cities = []
 
 fetch(endpoint)
   .then(res => res.json())
-  .then(data => {
-    form.addEventListener('change', () => {
-        const filtered = data.filter(d => d.city.toLowerCase().includes(form.value) || d.state.toLowerCase().includes(form.value))
-        const selected = filtered.map(city => {
-          const hlCity = city.city.replace(new RegExp(form.value, 'ig'), '<span class="hl">$&</span>')
-          const hlState = city.state.replace(new RegExp(form.value, 'ig'), '<span class="hl">$&</span>')
-          return `<li><span>${hlCity}, ${hlState}</span> <span class="population">${city.population}</span></li>`
-        })
-        suggestions.innerHTML = selected.join('')
-    })
-  })
+  .then(data => cities.push(...data))
   .catch(err => console.log('err with fetch', err))
+
+  form.addEventListener('keyup', () => {
+      const filtered = cities.filter(d => d.city.toLowerCase().includes(form.value) || d.state.toLowerCase().includes(form.value))
+      const selected = filtered.map(city => {
+        const hlCity = city.city.replace(new RegExp(form.value, 'ig'), '<span class="hl">$&</span>')
+        const hlState = city.state.replace(new RegExp(form.value, 'ig'), '<span class="hl">$&</span>')
+        return `<li><span>${hlCity}, ${hlState}</span> <span class="population">${city.population}</span></li>`
+      })
+      suggestions.innerHTML = selected.join('')
+  })
 
 
 
