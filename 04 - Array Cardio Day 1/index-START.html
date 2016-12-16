@@ -53,7 +53,7 @@
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
     const blvdsDOM = document.querySelectorAll('.mw-category-group li')
-    const blvds = Array.from(blvdsDOM).map(b => b.innerText)
+    const blvds = Array.from(blvdsDOM).map(b => b.textContent)
     const blvdsDE = blvds.filter(b => b.toLowerCase().includes('de'))
 
 
