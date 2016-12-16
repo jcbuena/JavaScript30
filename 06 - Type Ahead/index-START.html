@@ -16,6 +16,27 @@
   </form>
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+const form = document.querySelector('input[class="search"]')
+const suggestions = document.querySelector('.suggestions')
+
+const cities = []
+
+fetch(endpoint)
+  .then(res => res.json())
+  .then(data => {
+    form.addEventListener('change', () => {
+        const filtered = data.filter(d => d.city.toLowerCase().includes(form.value) || d.state.toLowerCase().includes(form.value))
+        const selected = filtered.map(city => {
+          const hlCity = city.city.replace(new RegExp(form.value, 'ig'), '<span class="hl">$&</span>')
+          const hlState = city.state.replace(new RegExp(form.value, 'ig'), '<span class="hl">$&</span>')
+          return `<li><span>${hlCity}, ${hlState}</span> <span class="population">${city.population}</span></li>`
+        })
+        suggestions.innerHTML = selected.join('')
+    })
+  })
+  .catch(err => console.log('err with fetch', err))
+
+
 
 </script>
   </body>
